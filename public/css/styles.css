@@ -101,7 +101,8 @@ nav > ul {
 }
 
 .upgradeItem {
-	width: 40%;
+	max-width: 40%;
+  min-width: 158px;
 }
 
 .imgBox {

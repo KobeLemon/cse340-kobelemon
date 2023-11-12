@@ -1,3 +1,20 @@
 {
-	"cSpell.words": ["livin"]
+  "cSpell.words": [
+    "firstname",
+    "lastname",
+    "livin",
+    "pkey"
+  ],
+  "sqltools.connections": [
+    {
+      "pgOptions": {
+        "ssl": true
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "driver": "PostgreSQL",
+      "name": "CSE-340-KL Database",
+      "connectString": "postgres://cse340kl:FUjHHaEms9EKkFTO4RymSoRzom3DJQET@dpg-cl6pdfquuipc73f20u0g-a.oregon-postgres.render.com/cse340kl"
+    }
+  ]
 }

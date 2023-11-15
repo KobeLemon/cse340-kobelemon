@@ -48,6 +48,7 @@ VALUES
   ('SUV'),
   ('Truck'),
   ('Sedan');
+SELECT * FROM public.classification;
 
 -- Create relationship between 'classification' and 'inventory tables'
 ALTER TABLE IF EXISTS public.inventory
@@ -68,7 +69,7 @@ INSERT INTO public.inventory (
     inv_color,
     classification_id
   )
-VALUES   (
+VALUES (
     'Chevy',
     'Camaro',
     '2018',
@@ -235,3 +236,4 @@ VALUES   (
     'White',
     5
   );
+SELECT * FROM public.inventory;

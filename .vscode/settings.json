@@ -14,7 +14,7 @@
       "server": "localhost",
       "driver": "PostgreSQL",
       "name": "CSE-340-KL Database",
-      "connectString": "postgres://cse340kl:FUjHHaEms9EKkFTO4RymSoRzom3DJQET@dpg-cl6pdfquuipc73f20u0g-a.oregon-postgres.render.com/cse340kl"
+      "connectString": "postgres://cse340kl:kCu7lIEGs8dqC6kKHKuXOw86DMNaaVWg@dpg-cla42qdo7jlc73flhq6g-a.oregon-postgres.render.com/cse340kl_lfjh"
     }
   ]
 }

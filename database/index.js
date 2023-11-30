@@ -11,9 +11,9 @@ if (process.env.NODE_ENV == 'development') {
   pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: {
-      rejectUnauthorized: false,
-    },
-  })
+      rejectUnauthorized: false
+    }
+  });
 
   // Added for troubleshooting queries
   // during development
@@ -27,11 +27,11 @@ if (process.env.NODE_ENV == 'development') {
         console.error('error in query');
         throw error;
       }
-    },
-  }
-  } else {
-    pool = new Pool({
-      connectionString: process.env.DATABASE_URL,
-    });
-    module.exports = pool;
-  }
+    }
+  };
+} else {
+  pool = new Pool({
+    connectionString: process.env.DATABASE_URL
+  });
+  module.exports = pool;
+}

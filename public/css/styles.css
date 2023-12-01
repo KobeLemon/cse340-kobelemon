@@ -55,6 +55,11 @@ nav > ul {
   height: 100%;
   padding: 0.75rem;
 }
+
+nav > ul > li > a {
+  text-decoration: none;
+  color: white;
+}
 /* End of Small Nav Styling */
 /* End of Small Header Styling */
 

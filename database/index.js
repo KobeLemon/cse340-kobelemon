@@ -30,6 +30,8 @@ if (process.env.NODE_ENV == 'development') {
     }
   };
 } else {
+
+  // This is used for real world production--------------
   pool = new Pool({
     connectionString: process.env.DATABASE_URL
   });

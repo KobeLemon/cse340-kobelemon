@@ -27,21 +27,15 @@ app.set('layout', './layouts/layout');
 app.use(static);
 
 // Inventory routes
-app.use('/inv', inventoryRoute);
+app.use('/inv', utilities.handleErrors(inventoryRoute));
 
 // Index Route
-// app.get('/', (req, res) => { res.render('index', { title: 'Home' }); });
-app.get('/', baseController.buildHome);
+app.get('/', utilities.handleErrors(baseController.buildHome));
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page'})
 });
-
-// File Not Found Route - must be last route in list
-app.use(async (req, res, next) => {
-  app.use({status: 404, message:'Sorry, we appear to have lost that page.'})
-})
 
 /* ***********************
 * Express Error Handler

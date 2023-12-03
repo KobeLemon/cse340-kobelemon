@@ -1,4 +1,8 @@
 ------------------ WEEK 02 ASSIGNMENT 2 TASK 1 SQL STATEMENTS ------------------
+
+-- ALWAYS RUN ALL OF THESE STATEMENTS AFTER YOU RUN THE "db-sql-code.sql" STATEMENTS
+----------------------------------------------------------------
+
 -- Insert a user with the specified info into the account table
 INSERT INTO public.account (
   account_firstname,

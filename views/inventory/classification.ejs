@@ -1,0 +1,9 @@
+<div class="classificationBox">
+  <% if (title) { %>
+  <h2> <%= title %></h2>
+  <% } else {
+    res.redirect('/')
+  } %>
+  <%# messages() %>
+  <%- grid %>
+</div>

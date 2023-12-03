@@ -6,7 +6,6 @@ const Util = {};
  ************************** */
 Util.getNav = async (req, res, next) => {
   let data = await invModel.getClassifications();
-  console.log(data.rows);
   let list = '<ul>';
   list += '<li><a href="/" title="Home page">Home</a></li>';
   data.rows.forEach((row) => {
@@ -31,14 +30,14 @@ Util.buildClassificationGrid = async function (data) {
     grid = '<ul id="inv-display">';
     data.forEach((vehicle) => {
       grid += `<li>
-        <a class="classificationLink" href="../../inv/detail/${vehicle.inv_id}" title="View ${vehicle.inv_make} ${vehicle.inv_model} details">
+        <a class="classificationLink" href="/inv/vehicle/${vehicle.inv_id}" title="View ${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model} details">
           <img
             class="thumbnailImg"
             src="${vehicle.inv_thumbnail}"
-            alt="Image of ${vehicle.inv_make} ${vehicle.inv_model} on CSE Motors"
-          />
+            alt="Image of ${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model} on CSE Motors">
           <div class="namePrice">
-            <h2>${vehicle.inv_make} ${vehicle.inv_model}</h2>
+            <h2>${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}</h2>
+            <span>MSRP: $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</span>
           </div>
         </a>
       </li>`;
@@ -49,6 +48,26 @@ Util.buildClassificationGrid = async function (data) {
   }
   return grid;
 };
+
+Util.buildSingleVehicleInfo = async (data) => {
+  let vehicleData = data[0];
+  let vehicleElement =
+  `<div class="singleVehicleBox">
+    <img src="${vehicleData.inv_image}" alt="Image of ${vehicleData.inv_year} ${vehicleData.inv_make} ${vehicleData.inv_model}">
+    <div class="singleVehicleInfo">
+      <h2>${vehicleData.inv_year} ${vehicleData.inv_make} ${vehicleData.inv_model}</h2>
+      <span>MSRP: $${new Intl.NumberFormat('en-US').format(vehicleData.inv_price)}</span>
+      <hr>
+      <ul>
+        <li class="singleVehicleClassification">Type: ${vehicleData.classification_name}</li>
+        <li class="singleVehicleMiles">Miles: ${new Intl.NumberFormat('en-US').format(vehicleData.inv_miles)}</li>
+        <li class="singleVehicleColor">Color: ${vehicleData.inv_color}</li>
+        <li class="singleVehicleDesc">${vehicleData.inv_description}</li>
+      </ul>
+    </div>
+  </div>`;
+  return vehicleElement;
+}
 
 /* ****************************************
  * Middleware For Handling Errors

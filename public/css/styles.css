@@ -142,8 +142,8 @@ nav > ul > li > a {
 }
 
 #inv-display > li {
-  /* width: 90%; */
   max-width: 385px;
+  height: fit-content;
   margin: auto auto 2rem auto;
   border-radius: 0.5rem;
   padding: 1rem;
@@ -162,6 +162,7 @@ nav > ul > li > a {
   text-decoration: none;
   color: black;
   height: 100%;
+  width: 100%;
   text-align: center;
 }
 
@@ -170,6 +171,33 @@ nav > ul > li > a {
 }
 
 /* End of Small Classification View Styling */
+
+/* Start of Small Single Vehicle View Styling */
+.singleVehicleBox {
+  margin: 2rem auto;
+  width: 90%;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.singleVehicleBox > img {
+  width: 100%;
+  margin-top: 1rem;
+  border-radius: 0.8rem;
+}
+
+.singleVehicleInfo {
+  padding: 0.5rem;
+}
+
+.singleVehicleInfo > ul {
+  padding-left: 1rem;
+}
+
+.singleVehicleInfo > ul > li {
+  padding: 0.25rem;
+}
+/* End of Small Single Vehicle View Styling */
 
 /* Start of Small Footer Styling */
 .copyright {
@@ -272,15 +300,48 @@ nav > ul > li > a {
 
   #inv-display {
     display: flex;
-    /* width: 100%; */
+    gap: 2rem;
     flex-wrap: wrap;
+    justify-content: center;
   }
 
   #inv-display > li {
     width: 45%;
-    height: 240px;
+    margin: 0px;
+    height: 270px;
   }
   /* End of Medium/Large Classification View Styling */
+
+  /* Start of Medium/Large Single Vehicle View Styling */
+  .singleVehicleBox {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 1rem auto;
+    gap: 1rem;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+  }
+
+  .singleVehicleBox > img {
+    width: 55%;
+    height: 95%;
+    padding: 0.5rem;
+    margin-top: 0rem;
+  }
+
+  .singleVehicleInfo {
+    padding: 0.5rem;
+  }
+
+  .singleVehicleInfo > ul {
+    padding-left: 1rem;
+  }
+
+  .singleVehicleInfo > ul > li {
+    padding: 0.25rem;
+  }
+  /* End of Medium/Large Single Vehicle View Styling */
 
 }
 /* ================================================================== */

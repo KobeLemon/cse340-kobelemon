@@ -7,7 +7,6 @@
  *************************/
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
-const env = require('dotenv').config();
 const app = express();
 const static = require('./routes/static');
 const baseController = require('./controllers/baseController');
@@ -45,7 +44,7 @@ app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav();
   console.error(`Error at "${req.originalUrl}": ${err.message}`);
   res.render("errors/error", {
-    title: err.status || 'Server Error',
+    title: err.status || '500 Server Error',
     message: err.message,
     nav
   })

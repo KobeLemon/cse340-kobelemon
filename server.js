@@ -2,6 +2,7 @@
  * This server.js file is the primary file of the
  * application. It is used to control the project.
  *******************************************/
+
 /* ***********************
  * Require Statements
  *************************/
@@ -12,6 +13,33 @@ const static = require('./routes/static');
 const baseController = require('./controllers/baseController');
 const inventoryRoute = require('./routes/inventoryRoute');
 const utilities = require('./utilities/index');
+const session = require('express-session');
+const pool = require('./database/');
+const accountRoute = require('./routes/accountRoute');
+/* End of Require Statements */
+
+/* ***********************
+ * Middleware
+ * ************************/
+app.use(session({
+  store: new (require('connect-pg-simple')(session))({
+    createTableIfMissing: true,
+    pool
+  }),
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+  name: 'sessionsId'
+}))
+/* End of Middleware */
+
+// Express Messages Middleware
+app.use(require('connect-flash')());
+app.use((req, res, next) => {
+  res.locals.messages = require('express-messages')(req, res);
+  next();
+})
+/* End of Express Messages Middleware */
 
 /* ***********************
  * View Engine & Templates
@@ -19,13 +47,17 @@ const utilities = require('./utilities/index');
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
 app.set('layout', './layouts/layout');
+/* End of View Engine & Templates */
 
 /* ***********************
  * Routes
  *************************/
 app.use(static);
 
-// Inventory routes
+// Account Route
+app.use('/account', utilities.handleErrors(accountRoute));
+
+// Inventory Route
 app.use('/inv', utilities.handleErrors(inventoryRoute));
 
 // Index Route
@@ -35,6 +67,7 @@ app.get('/', utilities.handleErrors(baseController.buildHome));
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page'})
 });
+/* End of Routes */
 
 /* ***********************
 * Express Error Handler
@@ -49,6 +82,7 @@ app.use(async (err, req, res, next) => {
     nav
   })
 })
+/* End of Express Error Handler */
 
 /* ***********************
  * Local Server Information
@@ -56,6 +90,7 @@ app.use(async (err, req, res, next) => {
  *************************/
 const port = process.env.PORT;
 const host = process.env.HOST;
+/* End of Local Server Information */
 
 /* ***********************
  * Log statement to confirm server operation
@@ -63,3 +98,4 @@ const host = process.env.HOST;
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`);
 });
+/* End of Server Confirmation */

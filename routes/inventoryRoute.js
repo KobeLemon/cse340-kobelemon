@@ -2,9 +2,10 @@
 const express = require('express');
 const router = new express.Router();
 const invController = require('../controllers/invController');
+const utilities = require('../utilities/');
 
 // Route to build inventory by classification view
-router.get('/type/:classificationId', invController.buildByClassificationId);
-router.get('/vehicle/:vehicleId', invController.printSingleVehicle);
+router.get('/type/:classificationId', utilities.handleErrors(invController.buildByClassificationId));
+router.get('/vehicle/:vehicleId', utilities.handleErrors(invController.printSingleVehicle));
 
 module.exports = router;

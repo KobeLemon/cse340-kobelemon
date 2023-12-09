@@ -36,14 +36,9 @@ async function buildRegister(req, res, next) {
 * *************************************** */
 async function registerAccount(req, res) {
   let nav = await utilities.getNav();
-  console.log('req.body1');
-  console.log(req.body);
   const { account_firstname, account_lastname, account_email, account_password } = req.body;
-  console.log('req.body2');
-  console.log(req.body);
 
   const regResult = await accountModel.registerAccountModel(account_firstname, account_lastname, account_email, account_password)
-  let test;
   if (regResult) {
     req.flash('success', `Congratulations, ${account_firstname}, you are registered! Please log in below.`);
     res.status(201).render('account/login', {
@@ -51,7 +46,7 @@ async function registerAccount(req, res) {
       nav
     });
   } else {
-    req.flash('error', 'Sorry the registration failed. Please retry creating an account.');
+    req.flash('error', 'Sorry, the registration failed. Please retry creating an account.');
     res.status(501).render('account/register', {
       title: 'Register your new account!',
       nav

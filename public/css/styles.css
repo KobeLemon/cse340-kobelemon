@@ -265,7 +265,8 @@ nav > ul > li:hover {
 
 /* Start of Small Login & Register Pages Styling  */
 .loginForm,
-.registerForm {
+.registerForm,
+.newClassificationForm {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -287,6 +288,7 @@ input:required:valid {
 
 .loginForm,
 .registerForm,
+.newClassificationForm,
 #submit,
 #passwordBtn {
   border-radius: 0.5rem;
@@ -327,6 +329,14 @@ input:required:valid {
   padding-left: 0rem;
 }
 /* End of Small Login & Register Pages Styling  */
+
+/* Start of Small Inventory Management Page Styling */
+.managementLinksBox > a {
+  display: block;
+  margin: 1rem 2rem;
+  font-size: 1.1rem;
+}
+/* End of Small Inventory Management Page Styling */
 /* ================================================================== */
 /* END OF SMALL VIEW STYLING */
 /* ================================================================== */

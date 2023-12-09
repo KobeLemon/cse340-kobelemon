@@ -1,6 +1,7 @@
 <div class="classificationBox">
   <% if (title) { %>
   <h2> <%= title %></h2>
+  <%- messages() %>
   <% } else {
     res.redirect('/')
   } %>

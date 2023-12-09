@@ -16,6 +16,7 @@ const utilities = require('./utilities/index');
 const session = require('express-session');
 const pool = require('./database/');
 const accountRoute = require('./routes/accountRoute');
+const bodyParser = require('body-parser');
 /* End of Require Statements */
 
 /* ***********************
@@ -31,7 +32,6 @@ app.use(session({
   saveUninitialized: true,
   name: 'sessionsId'
 }))
-/* End of Middleware */
 
 // Express Messages Middleware
 app.use(require('connect-flash')());
@@ -40,6 +40,10 @@ app.use((req, res, next) => {
   next();
 })
 /* End of Express Messages Middleware */
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+/* End of Middleware */
 
 /* ***********************
  * View Engine & Templates
@@ -65,7 +69,7 @@ app.get('/', utilities.handleErrors(baseController.buildHome));
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
-  next({status: 404, message: 'Sorry, we appear to have lost that page'})
+  next({status: 404, message: 'Sorry, we appear to have lost that page'});
 });
 /* End of Routes */
 
@@ -78,7 +82,7 @@ app.use(async (err, req, res, next) => {
   console.error(`Error at "${req.originalUrl}": ${err.message}`);
   res.render("errors/error", {
     title: err.status || '500 Server Error',
-    message: err.message,
+    message: "Sorry the site appears to be having issues. Please try again later.",
     nav
   })
 })

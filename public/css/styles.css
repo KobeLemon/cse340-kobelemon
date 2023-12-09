@@ -28,20 +28,32 @@ main {
   padding: 0.5rem;
 }
 
-.notice {
+.success,
+.notice,
+.error {
   list-style: none;
 }
 
+.success > li,
 .notice > li,
 .error > li {
   padding: 0.5rem;
   border-radius: 0.5rem;
   width: fit-content;
   font-style: oblique;
+  font-weight: bold;
 }
 
+.success > li {
+  background-color: rgba(38, 255, 0, 0.5);
+
+}
 .notice > li {
-  background-color: gold;
+  background-color: rgba(255, 215, 0, 0.5)
+}
+
+.error > li {
+  background-color: rgba(255, 0, 0, 0.5);
 }
 
 nav > ul > li,
@@ -52,6 +64,7 @@ nav > ul > li,
 .namePrice,
 .loginTitle,
 .loginForm > p,
+.registerTitle,
 .copyright {
   text-align: center;
 }
@@ -249,8 +262,9 @@ nav > ul > li:hover {
 }
 /* End of Small Single Vehicle View Styling */
 
-/* Start of Small Login Page Styling  */
-.loginForm {
+/* Start of Small Login & Register Pages Styling  */
+.loginForm,
+.registerForm {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -259,28 +273,50 @@ nav > ul > li:hover {
   padding: 1rem;
   width: 70%;
   margin: auto;
-  border-radius: 0.8rem;
-  font-weight: bold;
-  letter-spacing: 1px;
 }
 
-.loginForm > #submit {
+.loginForm,
+.registerForm,
+#submit,
+#passwordBtn {
+  border-radius: 0.5rem;
+  font-weight: bold;
+}
+#submit,
+#passwordBtn {
   width: fit-content;
-  margin: auto;
   padding: 0.25rem;
   background-color: white;
+  color: black;
   border-radius: 0.25rem;
   transition: 0.25s;
 }
 
-.loginForm > #submit:hover {
+#submit {
+  margin: auto;
+  font-size: 1rem;
+}
+
+#passwordBtn {
+  font-size: 0.75rem;
+}
+
+#submit:hover,
+#passwordBtn:hover {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
 }
 
 #signUpLink {
   color: white;
 }
-/* End of Small Login Page Styling  */
+
+.registerFormParagraph,
+.registerFormParagraph > ul {
+  margin: 0rem 1rem;
+  font-size: 0.75rem;
+  padding-left: 0rem;
+}
+/* End of Small Login & Register Pages Styling  */
 /* ================================================================== */
 /* END OF SMALL VIEW STYLING */
 /* ================================================================== */

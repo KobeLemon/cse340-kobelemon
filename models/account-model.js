@@ -1,4 +1,8 @@
+/* ***********************
+ * Require Statements
+ *************************/
 const pool = require('../database/');
+/* End of Require Statements */
 
 /* *****************************
 *   Register new account
@@ -13,5 +17,6 @@ async function registerAccountModel(account_firstname, account_lastname, account
     return error.message;
   };
 }
+/* End of Function: registerAccountModel() */
 
 module.exports = { registerAccountModel };

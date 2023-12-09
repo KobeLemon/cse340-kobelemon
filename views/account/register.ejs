@@ -1,7 +1,15 @@
 <h2 class="registerTitle"><%- title %></h2>
-<%- messages() %>
+<%# messages() %>
+<% if (errors) { %>
+  <ul class="error">
+  <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+  <% }); %>
+  </ul>
+<% } %>
+
 <form action="/account/register" method="post" class="registerForm">
-  <p class="registerFormParagraph"><em>** All fields are required ** </em></p>
+  <p class="formParagraph"><em>** All fields are required ** </em></p>
 
   <label for="account_firstname">First Name:</label>
   <input type="text" name="account_firstname" id="account_firstname" placeholder="First Name" required>
@@ -13,16 +21,16 @@
   <input type="email" name="account_email" id="account_email" placeholder="email@domain.com" required>
 
   <label for="account_password">Password:</label>
-  <input type="password" name="account_password" id="account_password" placeholder="Password" required>
+  <input type="password" name="account_password" id="account_password" placeholder="Password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
   <span id="passwordBtn">Show Password</span>
 
-  <div class="registerFormParagraph">
+  <div class="formParagraph">
     Password Requirements:
     <ul>
       <li>12 characters total</li>
       <li>At least 1 capital letter</li>
       <li>At least 1 number</li>
-      <li>At least 1 special character (@, %, #, etc.)</li>
+      <li>At least 1 special character</li>
     </ul>
   </div>
 

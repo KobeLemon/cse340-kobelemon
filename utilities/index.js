@@ -1,4 +1,9 @@
+/* ***********************
+ * Require Statements
+ *************************/
 const invModel = require('../models/inventory-model');
+/* End of Require Statements */
+
 const Util = {};
 
 /* ************************
@@ -18,6 +23,7 @@ Util.getNav = async (req, res, next) => {
   list += '</ul>';
   return list;
 };
+/* End of Function: getNav() */
 
 /* **************************************
  * Build the classification view HTML
@@ -46,7 +52,11 @@ Util.buildClassificationGrid = async function (data) {
   }
   return grid;
 };
+/* End of Function: buildClassificationGrid() */
 
+/* **************************************
+ * Build the single vehicle info
+ * ************************************ */
 Util.buildSingleVehicleInfo = async (data) => {
   let vehicleData = data[0];
   let vehicleElement =
@@ -65,7 +75,8 @@ Util.buildSingleVehicleInfo = async (data) => {
     </div>
   </div>`;
   return vehicleElement;
-}
+};
+/* End of Function: buildSingleVehicleInfo() */
 
 /* ****************************************
  * Middleware For Handling Errors
@@ -74,5 +85,6 @@ Util.buildSingleVehicleInfo = async (data) => {
 Util.handleErrors = (fn) => (req, res, next) => {
   Promise.resolve(fn(req, res, next)).catch(next);
 };
+/* End of Error Middleware Function: handleErrors() */
 
 module.exports = Util;

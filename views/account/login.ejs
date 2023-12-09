@@ -5,7 +5,18 @@
   <input type="email" id="account_email" placeholder="email@domain.com" required>
 
   <label for="account_password">Password:</label>
-  <input type="text" id="account_password" placeholder="Password" required>
+  <input type="password" id="account_password" placeholder="Password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
+
+  <span id="passwordBtn">Show Password</span>
+  <div class="formParagraph">
+    Password Requirements:
+    <ul>
+      <li>12 characters total</li>
+      <li>At least 1 capital letter</li>
+      <li>At least 1 number</li>
+      <li>At least 1 special character</li>
+    </ul>
+  </div>
 
   <button type="submit" id="submit">Login!</button>
 

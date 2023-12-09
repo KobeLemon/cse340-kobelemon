@@ -1,4 +1,8 @@
+/* ***********************
+ * Require Statements
+ *************************/
 const pool = require('../database/');
+/* End of Require Statements */
 
 /* ***************************
  *  Get all classification data
@@ -6,6 +10,7 @@ const pool = require('../database/');
 async function getClassifications() {
   return await pool.query('SELECT * FROM public.classification ORDER BY classification_name');
 }
+/* End of Function: getClassifications() */
 
 /* ***************************
  *  Get all inventory items and classification_name by classification_id
@@ -24,6 +29,7 @@ async function getInventoryByClassificationId(classification_id) {
     console.error(`getInventoryByClassificationId error: ${error}`);
   }
 }
+/* End of Function: getInventoryByClassificationId() */
 
 async function getSingleVehicleByVehicleId(vehicle_id) {
   try {
@@ -39,6 +45,7 @@ async function getSingleVehicleByVehicleId(vehicle_id) {
     console.error(`getSingleVehicleByVehicleId error: ${error}`);
   }
 }
+/* End of Function: getSingleVehicleByVehicleId() */
 
 module.exports = {
   getClassifications,

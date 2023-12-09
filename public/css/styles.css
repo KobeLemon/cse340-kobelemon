@@ -42,6 +42,7 @@ main {
   width: fit-content;
   font-style: oblique;
   font-weight: bold;
+  margin-bottom: 0.5rem;
 }
 
 .success > li {
@@ -275,6 +276,15 @@ nav > ul > li:hover {
   margin: auto;
 }
 
+/* input:required:invalid, */
+input:focus:invalid {
+  background-color: rgb(255, 138, 138);
+}
+
+input:required:valid {
+  background-color: rgb(152, 255, 134);
+}
+
 .loginForm,
 .registerForm,
 #submit,
@@ -310,8 +320,8 @@ nav > ul > li:hover {
   color: white;
 }
 
-.registerFormParagraph,
-.registerFormParagraph > ul {
+.formParagraph,
+.formParagraph > ul {
   margin: 0rem 1rem;
   font-size: 0.75rem;
   padding-left: 0rem;

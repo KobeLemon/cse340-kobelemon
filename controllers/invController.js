@@ -1,5 +1,9 @@
+/* ***********************
+ * Require Statements
+ *************************/
 const invModel = require('../models/inventory-model');
 const utilities = require('../utilities/');
+/* End of Require Statements */
 
 const invCont = {};
 
@@ -27,6 +31,7 @@ invCont.buildByClassificationId = async (req, res, next) => {
     })
   }
 };
+/* End of Function: buildByClassificationId() */
 
 /* ***************************
  *  Build inventory by single vehicle view
@@ -52,5 +57,6 @@ invCont.printSingleVehicle = async (req, res, next) => {
     })
   }
 }
+/* End of Function: printSingleVehicle() */
 
 module.exports = invCont;

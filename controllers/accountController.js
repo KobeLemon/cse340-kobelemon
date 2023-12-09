@@ -1,5 +1,9 @@
+/* ***********************
+ * Require Statements
+ *************************/
 const utilities = require('../utilities/');
 const accountModel = require('../models/account-model');
+/* End of Require Statements */
 
 /* ****************************************
 *  Deliver login view
@@ -11,6 +15,7 @@ async function buildLogin(req, res, next) {
     nav
   });
 }
+/* End of Function: buildLogin() */
 
 
 /* ****************************************
@@ -20,9 +25,11 @@ async function buildRegister(req, res, next) {
   let nav = await utilities.getNav();
   res.render('account/register', {
     title: 'Register your new account!',
-    nav
+    nav,
+    errors: null
   });
 }
+/* End of Function: buildRegister() */
 
 /* ****************************************
 *  Process Account Registration
@@ -51,5 +58,6 @@ async function registerAccount(req, res) {
     });
   };
 }
+/* End of Function: registerAccount() */
 
 module.exports = { buildLogin, buildRegister, registerAccount };

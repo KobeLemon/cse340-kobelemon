@@ -14,8 +14,7 @@ async function buildLogin(req, res, next) {
     title: 'Login to your account!',
     nav
   });
-}
-/* End of Function: buildLogin() */
+} /* End of Function: buildLogin() */
 
 
 /* ****************************************
@@ -28,8 +27,7 @@ async function buildRegister(req, res, next) {
     nav,
     errors: null
   });
-}
-/* End of Function: buildRegister() */
+} /* End of Function: buildRegister() */
 
 /* ****************************************
 *  Process Account Registration
@@ -52,7 +50,6 @@ async function registerAccount(req, res) {
       nav
     });
   };
-}
-/* End of Function: registerAccount() */
+} /* End of Function: registerAccount() */
 
 module.exports = { buildLogin, buildRegister, registerAccount };

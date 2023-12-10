@@ -42,8 +42,7 @@ validate.registrationRules = () => {
       })
       .withMessage('Password does not meet requirements.')
   ];
-}
-/* End of Function: registrationRules() */
+} /* End of Function: registrationRules() */
 
 /* ******************************
  * Check data and return errors or continue to registration
@@ -65,7 +64,6 @@ validate.checkRegData = async (req, res, next) => {
     return
   }
   next()
-}
-/* End of Function: checkRegData() */
+} /* End of Function: checkRegData() */
 
 module.exports = validate;

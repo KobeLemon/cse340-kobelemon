@@ -27,12 +27,11 @@ invCont.buildByClassificationId = async (req, res, next) => {
     let nav = await utilities.getNav();
     res.render("errors/error", {
       title: '500 Server Error',
-      message: "Sorry, it appears the site has crashed.",
+      message: "Sorry, it appears the site is experiencing issues. Please try again later.",
       nav
     })
   }
-};
-/* End of Function: buildByClassificationId() */
+}; /* End of Function: buildByClassificationId() */
 
 /* ***************************
  *  Build inventory by single vehicle view
@@ -53,12 +52,11 @@ invCont.printSingleVehicle = async (req, res, next) => {
     let nav = await utilities.getNav();
     res.render('errors/error', {
       title: '500 Server Error',
-      message: 'Sorry, it appears the site has crashed.',
+      message: 'Sorry, it appears the site is experiencing issues. Please try again later.',
       nav
     })
   }
-}
-/* End of Function: printSingleVehicle() */
+} /* End of Function: printSingleVehicle() */
 
 /* ***************************
  *  Build inventory management view
@@ -73,15 +71,14 @@ invCont.buildInventoryManagement = async (req, res, next) => {
   } catch (Error) {
     res.render('errors/error', {
       title: '500 Server Error',
-      message: 'Sorry, it appears the site has crashed.',
+      message: 'Sorry, it appears the site is experiencing issues. Please try again later.',
       nav
     })
   }
-}
-/* End of Function: buildInventoryManagement() */
+} /* End of Function: buildInventoryManagement() */
 
 /* ***************************
- *  Deliver "Add new classification" view
+ *  Deliver "Add New Classification" view
  *  *** ONLY ACCESSIBLE BY ADMINS ***
  * ************************** */
 invCont.buildAddNewClassView = async (req, res, next) => {
@@ -91,16 +88,15 @@ invCont.buildAddNewClassView = async (req, res, next) => {
       title: 'Add New Classification',
       nav,
       errors: null
-    })
+    });
   } catch (error) {
     res.render('errors/error', {
       title: '500 Server Error',
-      message: 'Sorry, it appears the site has crashed.',
+      message: 'Sorry, it appears the site is experiencing issues. Please try again later.',
       nav
-    })
-  }
-}
-/* End of Function: buildAddNewClassView() */
+    });
+  };
+} /* End of Function: buildAddNewClassView() */
 
 /* ***************************
  *  Insert a new classification into the DB,
@@ -124,17 +120,72 @@ invCont.addNewClassificationController = async (req, res, next) => {
       res.status(201).render('inventory/management', {
         title: 'Vehicle Management',
         nav
-      })
-    }
+      });
+    };
   } catch (error) {
     let nav = await utilities.getNav();
-    req.flash('error', 'Sorry, adding a new classification failed. Please retry.');
+    req.flash('error', 'Sorry, that classification could not be created. Please retry.');
     res.status(501).render('inventory/add-classification', {
       title: 'Add New Classification',
       nav
     })
   }
-}
-/* End of Function: addNewClassificationController() */
+} /* End of Function: addNewClassificationController() */
+
+/* ***************************
+ *  Deliver "Add New Vehicle" view
+ *  *** ONLY ACCESSIBLE BY ADMINS ***
+ * ************************** */
+invCont.buildAddNewVehicleView = async (req, res, next) => {
+  try {
+    let nav = await utilities.getNav();
+    res.render('inventory/add-inventory', {
+      title: 'Add New Vehicle',
+      nav,
+      options,
+      errors: null
+    });
+  } catch (error) {
+    res.render('errors/error', {
+      title: '500 Server Error',
+      message: 'Sorry, it appears the site is experiencing issues. Please try again later.',
+      nav
+    });
+  };
+} /* End of Function: buildAddNewVehicleView() */
+
+/* ***************************
+ *  Insert a new vehicle into the DB,
+ *  then go back to "Vehicle Management view"
+ *  *** ONLY ACCESSIBLE BY ADMINS ***
+ * ************************** */
+invCont.addNewVehicleController = async (req, res, next) => {
+  try {
+  let nav = await utilities.getNav();
+
+  console.log('addNewVehicleController req.body');
+  console.log(req.body);
+
+  const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body;
+
+  const vehicleResult = await invManagement.addNewVehicleToDB(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id);
+
+  console.log('vehicleResult:');
+  console.log(vehicleResult);
+  if (vehicleResult) {
+    req.flash('success', `Congratulations! The new ${inv_year} ${inv_make} ${inv_model} was successfully created!`);
+    res.status(201).render('inventory/management', {
+      title: 'Vehicle Management',
+      nav
+    });
+  };
+  } catch (error) {
+    req.flash('error', 'Sorry, that vehicle could not be created. Please retry.');
+    res.status(501).render('inventory/add-inventory', {
+      title: 'Add New Vehicle',
+      nav
+    })
+  }
+} /* End of Function: addNewVehicleController() */
 
 module.exports = invCont;

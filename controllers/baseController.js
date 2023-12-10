@@ -14,7 +14,6 @@ baseController.buildHome = async function (req, res) {
   // req.flash('notice', 'Example of a flash notice message.');
   // req.flash('error', 'Example of a flash error message.');
   res.render('index', { title: 'Home', nav });
-};
-/* End of Function: buildHome() */
+}; /* End of Function: buildHome() */
 
 module.exports = baseController;

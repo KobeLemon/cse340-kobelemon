@@ -15,7 +15,6 @@ async function registerAccountModel(account_firstname, account_lastname, account
   } catch (error) {
     return error.message;
   };
-}
-/* End of Function: registerAccountModel() */
+} /* End of Function: registerAccountModel() */
 
 module.exports = { registerAccountModel };

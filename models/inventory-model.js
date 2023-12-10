@@ -9,13 +9,12 @@ const pool = require('../database/');
  * ************************** */
 async function getClassifications() {
   return await pool.query('SELECT * FROM public.classification ORDER BY classification_name');
-}
-/* End of Function: getClassifications() */
+} /* End of Function: getClassifications() */
 
 /* ***************************
  *  Get all inventory items and classification_name by classification_id
  * ************************** */
-async function getInventoryByClassificationId(classification_id) {
+async function getInventoryByClassificationId (classification_id) {
   try {
     const data = await pool.query(
       `SELECT * FROM public.inventory AS i
@@ -24,28 +23,30 @@ async function getInventoryByClassificationId(classification_id) {
       WHERE i.classification_id = $1`,
       [classification_id]
     );
+    console.log('getInventoryByClassificationId data.rows');
+    console.log(data.rows);
     return data.rows;
   } catch (error) {
     console.error(`getInventoryByClassificationId error: ${error}`);
   }
-}
-/* End of Function: getInventoryByClassificationId() */
+} /* End of Function: getInventoryByClassificationId() */
 
-async function getSingleVehicleByVehicleId(vehicle_id) {
+async function getSingleVehicleByVehicleId(inv_id) {
   try {
     const data = await pool.query(
       `SELECT * FROM public.inventory AS i
       INNER JOIN public.classification AS c
       ON i.classification_id = c.classification_id
       WHERE i.inv_id = $1`,
-      [vehicle_id]
+      [inv_id]
     );
+    console.log('getSingleVehicleByVehicleId data.rows');
+    console.log(data.rows);
     return data.rows;
   } catch (error) {
     console.error(`getSingleVehicleByVehicleId error: ${error}`);
   }
-}
-/* End of Function: getSingleVehicleByVehicleId() */
+} /* End of Function: getSingleVehicleByVehicleId() */
 
 module.exports = {
   getClassifications,

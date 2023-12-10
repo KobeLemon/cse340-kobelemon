@@ -1,0 +1,48 @@
+<h2 class="addVehicleTitle"><%- title %></h2>
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="error">
+  <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+  <%  }) %>
+  </ul>
+<% } %>
+<form action="/inv/add-inventory" method="post" class="newVehicleForm">
+  <p class="formParagraph">All fields are required</p>
+  <label for="classification_id">Classification:</label>
+  <select name="classification_id" id="classification_id" pattern="[^\d]{1,}" required>
+    <%# options %>
+    <!-- whatever option is selected will store its value into the select's data send -->
+    <!-- <option value="select" label="Select a Classification"/> -->
+    <!-- <option value="${classification_id} label="${classification_name}"/> -->
+  </select>
+
+  <label for="inv_make">Make:</label>
+  <input type="text" name="inv_make" id="inv_make" pattern="{1,}" placeholder="Min 1 Character" required>
+
+  <label for="inv_model">Model:</label>
+  <input type="text" name="inv_model" id="inv_model" pattern="{1,}" placeholder="Min 1 Character" required>
+
+  <label for="inv_description">Description:</label>
+  <textarea name="inv_description" id="inv_description" pattern="{1,}" placeholder="Min 1 Character" cols="30" rows="10" required></textarea>
+
+  <label for="inv_image">Image Path:</label>
+  <input type="text" name="inv_image" id="inv_image" pattern="(^\/.)(\S.)" placeholder="Must start with a forward slash ( / )" required>
+
+  <label for="inv_thumbnail">Thumbnail Path:</label>
+  <input type="text" name="inv_thumbnail" id="inv_thumbnail" pattern="(^\/.)(\S.)" placeholder="Must start with a forward slash ( / )" required>
+
+  <label for="inv_price">Price:</label>
+  <input type="text" name="inv_price" id="inv_price" pattern="[^\d]{1,}" placeholder="Only numbers, no commas or periods" required>
+
+  <label for="inv_year">Year:</label>
+  <input type="text" name="inv_year" id="inv_year" pattern="[^\d]{4}" placeholder="Must be 4 numbers ( YYYY )" required>
+
+  <label for="inv_miles">Miles:</label>
+  <input type="text" name="inv_miles" id="inv_miles" pattern="[^\d]{1,}" placeholder="Only numbers, no commas or periods" required>
+
+  <label for="inv_color">Color:</label>
+  <input type="text" name="inv_color" id="inv_color" pattern="[A-Za-z]{1,}" placeholder="Min 1 Character" required>
+
+  <button type="submit" id="submit">Add Vehicle</button>
+</form>

@@ -69,7 +69,7 @@ app.get('/', utilities.handleErrors(baseController.buildHome));
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
-  next({status: 404, message: 'Sorry, we appear to have lost that page'});
+  next({status: 404, pageNotFoundMessage: 'Sorry, we appear to have lost that page'});
 });
 /* End of Routes */
 
@@ -79,10 +79,11 @@ app.use(async (req, res, next) => {
 *************************/
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav();
+  // console.log(err);
   console.error(`Error at "${req.originalUrl}": ${err.message}`);
   res.render("errors/error", {
     title: err.status || '500 Server Error',
-    message: "Sorry the site appears to be having issues. Please try again later.",
+    message: err.pageNotFoundMessage || "Sorry the site appears to be having issues. Please try again later.",
     nav
   })
 })

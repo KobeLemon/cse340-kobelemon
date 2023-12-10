@@ -22,8 +22,7 @@ Util.getNav = async (req, res, next) => {
   });
   list += '</ul>';
   return list;
-};
-/* End of Function: getNav() */
+}; /* End of Function: getNav() */
 
 /* **************************************
  * Build the classification view HTML
@@ -51,8 +50,7 @@ Util.buildClassificationGrid = async function (data) {
     grid += '<p class="notice"> Sorry, no matching vehicles could be found.</p>';
   }
   return grid;
-};
-/* End of Function: buildClassificationGrid() */
+}; /* End of Function: buildClassificationGrid() */
 
 /* **************************************
  * Build the single vehicle info
@@ -75,8 +73,7 @@ Util.buildSingleVehicleInfo = async (data) => {
     </div>
   </div>`;
   return vehicleElement;
-};
-/* End of Function: buildSingleVehicleInfo() */
+}; /* End of Function: buildSingleVehicleInfo() */
 
 /* ****************************************
  * Middleware For Handling Errors

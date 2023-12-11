@@ -1,7 +1,9 @@
+// utilities/index.js
 /* ***********************
  * Require Statements
  *************************/
 const invModel = require('../models/inventory-model');
+const pool = require('../database/');
 /* End of Require Statements */
 
 const Util = {};
@@ -47,7 +49,7 @@ Util.buildClassificationGrid = async function (data) {
     });
     grid += '</ul>';
   } else {
-    grid += '<p class="notice"> Sorry, no matching vehicles could be found.</p>';
+    grid = '<p class="noVehiclesFound"> Sorry, no matching vehicles could be found.</p>';
   }
   return grid;
 }; /* End of Function: buildClassificationGrid() */
@@ -74,6 +76,16 @@ Util.buildSingleVehicleInfo = async (data) => {
   </div>`;
   return vehicleElement;
 }; /* End of Function: buildSingleVehicleInfo() */
+
+// Find Classification Name
+Util.findClassificationName = async (classification_id) => {
+  const classificationData = await pool.query(
+    `SELECT (classification_name) FROM classification WHERE classification_id = $1;`,
+    [classification_id]
+  );
+  const classificationName = classificationData.rows[0].classification_name;
+  return classificationName;
+}
 
 /* ****************************************
  * Middleware For Handling Errors

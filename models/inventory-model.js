@@ -1,3 +1,4 @@
+// inventory-model.js
 /* ***********************
  * Require Statements
  *************************/
@@ -23,8 +24,6 @@ async function getInventoryByClassificationId (classification_id) {
       WHERE i.classification_id = $1`,
       [classification_id]
     );
-    console.log('getInventoryByClassificationId data.rows');
-    console.log(data.rows);
     return data.rows;
   } catch (error) {
     console.error(`getInventoryByClassificationId error: ${error}`);
@@ -40,8 +39,6 @@ async function getSingleVehicleByVehicleId(inv_id) {
       WHERE i.inv_id = $1`,
       [inv_id]
     );
-    console.log('getSingleVehicleByVehicleId data.rows');
-    console.log(data.rows);
     return data.rows;
   } catch (error) {
     console.error(`getSingleVehicleByVehicleId error: ${error}`);

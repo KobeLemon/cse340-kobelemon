@@ -1,10 +1,11 @@
+<!-- views/inventory/classification.ejs -->
 <div class="classificationBox">
   <% if (title) { %>
   <h2> <%= title %></h2>
+  <hr>
   <%- messages() %>
   <% } else {
     res.redirect('/')
   } %>
-  <%# messages() %>
   <%- grid %>
 </div>

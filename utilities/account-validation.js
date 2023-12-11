@@ -1,3 +1,4 @@
+// account-validation.js
 /* ***********************
  * Require Statements
  *************************/
@@ -19,7 +20,7 @@ validate.registrationRules = () => {
       .withMessage('Please provide a first name.'),
 
     // lastname is required and must be a string with at least one char
-    body('account_lastName')
+    body('account_lastname')
       .trim()
       .isLength({ min: 2 })
       .withMessage('Please provide a last name.'),

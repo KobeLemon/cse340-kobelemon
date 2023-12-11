@@ -1,3 +1,4 @@
+/* styles.css */
 /******* Change Box Model ***************/
 *,
 *:before,
@@ -232,6 +233,10 @@ nav > ul > li:hover {
 
 .classificationLink > p {
   margin: 0rem;
+}
+
+.noVehiclesFound {
+  text-align: center;
 }
 
 /* End of Small Classification View Styling */

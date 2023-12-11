@@ -12,8 +12,6 @@ const invManagement = {}
  * ************************** */
 invManagement.addNewClassificationToDB = async (classification_name) => {
   try {
-    // console.log('addNewClassificationToDB classification_name');
-    // console.log(classification_name);
     let sql = "INSERT INTO classification (classification_name) VALUES ($1);";
     return await pool.query(sql, [ classification_name ])
   } catch (error) {

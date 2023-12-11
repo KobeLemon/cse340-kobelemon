@@ -28,15 +28,9 @@ invValidate.newClassificationRules = () => {
  * Check data and return errors or continue to add new classification
  * ***************************** */
 invValidate.checkNewClassificationData = async (req, res, next) => {
-  // console.log('checkNewClassificationData req.body');
-  // console.log(req.body);
   const { classification_name } = req.body;
   let errors = [];
-  // console.log('errors array before validationResult');
-  // console.log(errors);
   errors = validationResult(req);
-  // console.log('errors array after validationResult');
-  // console.log(errors);
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav();
     res.render('inventory/add-classification', {
@@ -128,15 +122,9 @@ invValidate.newVehicleRules = async () => {
  * Check data and return errors or continue to add new vehicle
  * ***************************** */
 invValidate.checkNewVehicleData = async (req, res, next) => {
-  // console.log('checkNewVehicleData req.body');
-  // console.log(req.body);
   const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body;
   let errors = [];
-  // console.log('errors array before validationResult');
-  // console.log(errors);
   errors = validationResult(req);
-  // console.log('errors array after validationResult');
-  // console.log(errors);
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav();
     res.render('inventory/add-inventory', {

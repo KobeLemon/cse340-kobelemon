@@ -1,3 +1,5 @@
+//* routes/inventoryRoute.js
+
 /* ***********************
  * Require Statements
  *************************/
@@ -30,11 +32,11 @@ router.post('/add-classification',
 // Route to show the "Add New Vehicle" view
 router.get('/add-inventory', utilities.handleErrors(invController.buildAddNewVehicleView));
 
-// // Route to post the new vehicle to the database
-// router.post('add-inventory',
-//   invValidate.newVehicleRules(),
-//   invValidate.checkNewVehicleData,
-//   utilities.handleErrors(invController.addNewVehicleController)
-// );
+// Route to post the new vehicle to the database
+router.post('/add-inventory',
+  invValidate.newVehicleRules(),
+  invValidate.checkNewVehicleData,
+  utilities.handleErrors(invController.addNewVehicleController)
+);
 
 module.exports = router;

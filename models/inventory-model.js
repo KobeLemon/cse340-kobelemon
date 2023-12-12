@@ -1,4 +1,4 @@
-// inventory-model.js
+//* models/inventory-model.js
 /* ***********************
  * Require Statements
  *************************/

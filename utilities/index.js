@@ -1,4 +1,5 @@
-// utilities/index.js
+//* utilities/index.js
+
 /* ***********************
  * Require Statements
  *************************/
@@ -77,7 +78,9 @@ Util.buildSingleVehicleInfo = async (data) => {
   return vehicleElement;
 }; /* End of Function: buildSingleVehicleInfo() */
 
-// Find Classification Name
+/* **************************************
+ * Find Classification Name
+ * ************************************ */
 Util.findClassificationName = async (classification_id) => {
   const classificationData = await pool.query(
     `SELECT (classification_name) FROM classification WHERE classification_id = $1;`,

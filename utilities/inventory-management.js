@@ -1,3 +1,5 @@
+//* utilities/inventory-management.js
+
 /* ***********************
  * Require Statements
  *************************/

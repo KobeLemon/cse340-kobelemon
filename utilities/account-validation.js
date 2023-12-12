@@ -1,9 +1,10 @@
-// account-validation.js
+//* utilities/account-validation.js
+
 /* ***********************
  * Require Statements
  *************************/
 const utilities = require('.');
-const { body, validationResult } = require('express-validator');
+const { check, validationResult } = require('express-validator');
 const validate = {};
 /* End of Require Statements */
 
@@ -14,25 +15,22 @@ const validate = {};
 validate.registrationRules = () => {
   return [
     // firstname is required and must be a string with at least one char
-    body('account_firstname')
+    check('account_firstname', 'Please provide a valid first name.')
       .trim()
-      .isLength({ min: 1 })
-      .withMessage('Please provide a first name.'),
+      .isLength({ min: 1 }),
 
     // lastname is required and must be a string with at least one char
-    body('account_lastname')
+    check('account_lastname', 'Please provide a valid last name.')
       .trim()
-      .isLength({ min: 2 })
-      .withMessage('Please provide a last name.'),
+      .isLength({ min: 2 }),
 
     // valid email is required and cannot already exist in the DB
-    body('account_email')
+    check('account_email', 'Please provide a valid email.')
       .trim()
       .isEmail()
-      .normalizeEmail()
-      .withMessage('A valid email is required.'),
+      .normalizeEmail(),
 
-    body('account_password')
+    check('account_password', 'Password does not meet requirements.')
       .trim()
       .isStrongPassword({
         minLength: 12,
@@ -41,18 +39,18 @@ validate.registrationRules = () => {
         minNumbers: 1,
         minSymbols: 1
       })
-      .withMessage('Password does not meet requirements.')
   ];
-} /* End of Function: registrationRules() */
+}
+/* End of Function: registrationRules() */
 
 /* ******************************
  * Check data and return errors or continue to registration
  * ***************************** */
 validate.checkRegData = async (req, res, next) => {
-  const { account_firstname, account_lastname, account_email } = req.body;
+  const { account_firstname, account_lastname, account_email } = req.check;
   let errors = [];
   errors = validationResult(req);
-  if (!errors.isEmpty()) {
+  if (errors.length > 0) {
     let nav = await utilities.getNav();
     res.render('account/register', {
       errors,

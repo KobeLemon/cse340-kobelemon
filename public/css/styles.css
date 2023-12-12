@@ -1,4 +1,5 @@
-/* styles.css */
+/** public/css/styles.css */
+
 /******* Change Box Model ***************/
 *,
 *:before,
@@ -283,13 +284,14 @@ nav > ul > li:hover {
   margin: auto;
 }
 
-/* input:required:invalid, */
 input:focus:invalid,
 textarea:focus:invalid {
   background-color: rgb(255, 138, 138);
 }
 
-input:valid {
+input:valid,
+input:not(:focus):valid,
+textarea:not(:focus):valid {
   background-color: rgb(152, 255, 134);
 }
 
@@ -340,9 +342,9 @@ input:valid {
 /* End of Small Login & Register Pages Styling  */
 
 /* Start of Small Inventory Management Page Styling */
-.managementLinksBox > a {
+.vehicleManagementLink {
   display: block;
-  margin: 1rem 2rem;
+  padding: 1rem;
   font-size: 1.1rem;
 }
 /* End of Small Inventory Management Page Styling */

@@ -28,7 +28,7 @@ router.post('/add-classification',
 );
 
 // Route to show the "Add New Vehicle" view
-// router.get('add-inventory', utilities.handleErrors(invController.buildAddNewVehicleView));
+router.get('/add-inventory', utilities.handleErrors(invController.buildAddNewVehicleView));
 
 // // Route to post the new vehicle to the database
 // router.post('add-inventory',

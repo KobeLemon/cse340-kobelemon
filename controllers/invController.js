@@ -137,7 +137,7 @@ invCont.buildAddNewVehicleView = async (req, res, next) => {
     res.render('inventory/add-inventory', {
       title: 'Add New Vehicle',
       nav,
-      options,
+      // options,
       errors: null
     });
   } catch (error) {

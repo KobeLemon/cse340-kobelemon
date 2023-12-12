@@ -21,7 +21,8 @@ async function getInventoryByClassificationId (classification_id) {
       `SELECT * FROM public.inventory AS i
       JOIN public.classification AS c
       ON i.classification_id = c.classification_id
-      WHERE i.classification_id = $1`,
+      WHERE i.classification_id = $1
+      ORDER BY inv_year DESC`,
       [classification_id]
     );
     return data.rows;

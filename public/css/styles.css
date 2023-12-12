@@ -291,7 +291,8 @@ textarea:focus:invalid {
 
 input:valid,
 input:not(:focus):valid,
-textarea:not(:focus):valid {
+textarea:not(:focus):valid,
+select:not(:focus):valid {
   background-color: rgb(152, 255, 134);
 }
 
@@ -341,11 +342,18 @@ textarea:not(:focus):valid {
 }
 /* End of Small Login & Register Pages Styling  */
 
-/* Start of Small Inventory Management Page Styling */
+/* Start of Small Inventory Management / Add Classification / Add Vehicle Page Styling */
 .vehicleManagementLink {
   display: block;
   padding: 1rem;
   font-size: 1.1rem;
+}
+
+.newVehicleForm > select,
+.newVehicleForm > input,
+.newVehicleForm > textarea {
+  padding: 0.25rem;
+  border-radius: 0.25rem;
 }
 /* End of Small Inventory Management Page Styling */
 /* ================================================================== */

@@ -27,6 +27,21 @@ Util.getNav = async (req, res, next) => {
   return list;
 }; /* End of Function: getNav() */
 
+/* ************************
+ * Constructs the admin "Add New Vehicle"
+ * classifications options list
+ ************************** */
+Util.newVehicleClassOptions = async (req, res, next) => {
+  let data = await invModel.getClassifications();
+  let list = ''; // <option label="Select a Classification" disabled>
+  console.log('newVehicleClassOptions data.rows');
+  console.log(data.rows);
+  data.rows.forEach((row) => {
+    list += `<option value="${row.classification_id}">${row.classification_name}</option>`;
+  });
+  return list;
+}; /* End of Function: newVehicleClassOptions() */
+
 /* **************************************
  * Build the classification view HTML
  * ************************************ */

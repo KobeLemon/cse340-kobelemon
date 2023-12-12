@@ -134,11 +134,12 @@ invCont.addNewClassificationController = async (req, res, next) => {
 invCont.buildAddNewVehicleView = async (req, res, next) => {
   try {
     let nav = await utilities.getNav();
+    let options = await utilities.newVehicleClassOptions();
     res.render('inventory/add-inventory', {
       title: 'Add New Vehicle',
       nav,
-      // options,
-      errors: null
+      options,
+      errors: []
     });
   } catch (error) {
     res.render('errors/error', {
@@ -158,8 +159,15 @@ invCont.addNewVehicleController = async (req, res, next) => {
   try {
   let nav = await utilities.getNav();
 
-  const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body;
-  const vehicleResult = await invManagement.addNewVehicleToDB(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id);
+  await console.log('addNewVehicleController req.body');
+  await console.log(req.body);
+  const {
+    inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id
+  } = await req.body;
+
+  const vehicleResult =
+    await invManagement.addNewVehicleToDB(
+      inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id);
 
   if (vehicleResult) {
     req.flash('success', `Congratulations! The new ${inv_year} ${inv_make} ${inv_model} was successfully created!`);

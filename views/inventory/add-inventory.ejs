@@ -19,31 +19,31 @@
   </select>
 
   <label for="inv_make">Make:</label>
-  <input type="text" name="inv_make" id="inv_make" pattern="{1,}" placeholder="Min 1 Character" required>
+  <input type="text" name="inv_make" id="inv_make" pattern="{1,}" placeholder="Min 1 Character" value="<%= locals.inv_make %>" required>
 
   <label for="inv_model">Model:</label>
-  <input type="text" name="inv_model" id="inv_model" pattern="{1,}" placeholder="Min 1 Character" required>
+  <input type="text" name="inv_model" id="inv_model" pattern="{1,}" placeholder="Min 1 Character" value="<%= locals.inv_model %>" required>
 
   <label for="inv_description">Description:</label>
-  <textarea name="inv_description" id="inv_description" placeholder="Min 1 Character" cols="30" rows="10" required></textarea>
+  <textarea name="inv_description" id="inv_description" placeholder="Min 1 Character" cols="30" rows="10" value="<%= locals.inv_description %>" required></textarea>
 
   <label for="inv_image">Image Path:</label>
-  <input type="text" name="inv_image" id="inv_image" pattern="^(\\).+" placeholder="Must start with a back slash ( \ )" required>
+  <input type="text" name="inv_image" id="inv_image" pattern="^(\\).+" placeholder="Must start with a back slash ( \ )" value="<%= locals.inv_image %>" required>
 
   <label for="inv_thumbnail">Thumbnail Path:</label>
-  <input type="text" name="inv_thumbnail" id="inv_thumbnail" pattern="^(\\).+" placeholder="Must start with a back slash ( \ )" required>
+  <input type="text" name="inv_thumbnail" id="inv_thumbnail" pattern="^(\\).+" placeholder="Must start with a back slash ( \ )" value="<%= locals.inv_thumbnail %>" required>
 
   <label for="inv_price">Price:</label>
-  <input type="text" name="inv_price" id="inv_price" pattern="[0-9]+" placeholder="Only numbers, no commas or periods" required>
+  <input type="text" name="inv_price" id="inv_price" pattern="[0-9]+" placeholder="Only numbers, no commas or periods" value="<%= locals.inv_price %>" required>
 
   <label for="inv_year">Year:</label>
-  <input type="text" name="inv_year" id="inv_year" pattern="[0-9]{4}" placeholder="Must be 4 numbers ( YYYY )" required>
+  <input type="text" name="inv_year" id="inv_year" pattern="[0-9]{4}" placeholder="Must be 4 numbers ( YYYY )" value="<%= locals.inv_year %>" required>
 
   <label for="inv_miles">Miles:</label>
-  <input type="text" name="inv_miles" id="inv_miles" pattern="[0-9]+" placeholder="Only numbers, no commas or periods" required>
+  <input type="text" name="inv_miles" id="inv_miles" pattern="[0-9]+" placeholder="Only numbers, no commas or periods" value="<%= locals.inv_miles %>" required>
 
   <label for="inv_color">Color:</label>
-  <input type="text" name="inv_color" id="inv_color" pattern="[A-Za-z ]+" placeholder="Min 1 Character" required>
+  <input type="text" name="inv_color" id="inv_color" pattern="[A-Za-z ]+" placeholder="Min 1 Character" value="<%= locals.inv_color %>" required>
 
   <button type="submit" id="submit">Add Vehicle</button>
 </form>

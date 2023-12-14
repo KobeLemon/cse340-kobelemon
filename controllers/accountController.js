@@ -5,6 +5,8 @@
  *************************/
 const utilities = require('../utilities/');
 const accountModel = require('../models/account-model');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 /* End of Require Statements */
 
 /* ****************************************
@@ -54,4 +56,19 @@ async function registerAccount(req, res) {
   };
 } /* End of Function: registerAccount() */
 
-module.exports = { buildLogin, buildRegister, registerAccount };
+/* ****************************************
+ *  Process login request
+ * ************************************ */
+async function accountLogin(req, res) {
+  let nav = await utilities.getNav();
+  const { account_email, account_password } = req.body;
+  const accountData = await accountModel.getAccountByEmail(account_email);
+  if (!accountData) {
+    req.flash('notice', 'Please check your credentials and try again.');
+    res.status(400).render('account/login', {
+
+    })
+  }
+}
+
+module.exports = { buildLogin, buildRegister, accountLogin };

@@ -12,7 +12,7 @@
 <% } %>
 <form action="/inv/add-classification" method="post" class="newClassificationForm">
   <label for="classification_name">Classification Name:</label>
-  <input type="text" name="classification_name" id="classification_name" placeholder="Classification Name" pattern="[A-Za-z]+" required>
+  <input type="text" name="classification_name" id="classification_name" placeholder="Classification Name" pattern="[A-Za-z]+" value="<%= locals.classification_name %>" required>
 
   <p class="formParagraph">Field is required</p>
   <div class="formParagraph">

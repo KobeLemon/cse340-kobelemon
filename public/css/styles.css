@@ -59,6 +59,12 @@ main {
   background-color: rgba(255, 0, 0, 0.5);
 }
 
+/* .success:empty,
+.notice:empty,
+.error:empty {
+  display: none;
+} */
+
 nav > ul > li,
 .upgradesMain > h2,
 .upgradeItem > a,
@@ -294,6 +300,22 @@ input:not(:focus):valid,
 textarea:not(:focus):valid,
 select:not(:focus):valid {
   background-color: rgb(152, 255, 134);
+}
+
+#login_account_email,
+#login_account_password {
+  background-color: white;
+}
+
+.backToLoginLink {
+  display: block;
+  padding: 0.25rem;
+  font-size: 1.1rem;
+  color: black;
+  text-decoration: none;
+  border-bottom: 1px solid black;
+  width: fit-content;
+  margin-bottom: 1rem;
 }
 
 .loginForm,

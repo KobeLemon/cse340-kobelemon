@@ -2,7 +2,9 @@
 
 <h2 class="addVehicleTitle"><%- title %></h2>
 <a href="/inv" class="vehicleManagementLink">← Back to Vehicle Management</a>
+
 <%- messages() %>
+
 <% if (errors) { %>
   <ul class="error">
   <% errors.forEach(error => { %>
@@ -10,6 +12,7 @@
   <%  }) %>
   </ul>
 <% } %>
+
 <form action="/inv/add-inventory" method="post" class="newVehicleForm">
   <p class="formParagraph">** All fields are required **</p>
   <label for="classification_id">Classification:</label>

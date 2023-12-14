@@ -5,8 +5,9 @@
  *************************/
 const utilities = require('../utilities/');
 const accountModel = require('../models/account-model');
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
+const bcrypt = require('bcryptjs');
+// const jwt = require('jsonwebtoken');
+// require('dotenv').config();
 /* End of Require Statements */
 
 /* ****************************************
@@ -16,7 +17,8 @@ async function buildLogin(req, res, next) {
   let nav = await utilities.getNav();
   res.render('account/login', {
     title: 'Login to your account!',
-    nav
+    nav,
+    errors: null
   });
 } /* End of Function: buildLogin() */
 
@@ -40,18 +42,34 @@ async function registerAccount(req, res) {
   let nav = await utilities.getNav();
   const { account_firstname, account_lastname, account_email, account_password } = req.body;
 
-  const regResult = await accountModel.registerAccountModel(account_firstname, account_lastname, account_email, account_password)
+  // Hash the password before storing
+  let hashedPassword;
+  try {
+    // regular password and cost (salt is generated automatically)
+    hashedPassword = await bcrypt.hashSync(account_password, 10);
+  } catch (error) {
+    req.flash('notice', 'Sorry, we encountered an issue with processing the registration. Please retry.');
+    res.status(500).render('account/register', {
+      title: 'Register your account!',
+      nav,
+      errors: null
+    });
+  };
+
+  const regResult = await accountModel.registerAccountModel(account_firstname, account_lastname, account_email, hashedPassword)
   if (regResult) {
     req.flash('success', `Congratulations, ${account_firstname}, you are registered! Please log in below.`);
     res.status(201).render('account/login', {
       title: 'Login to your account!',
-      nav
+      nav,
+      errors: null
     });
   } else {
     req.flash('error', 'Sorry, the registration failed. Please retry creating an account.');
     res.status(501).render('account/register', {
       title: 'Register your new account!',
-      nav
+      nav,
+      errors: null
     });
   };
 } /* End of Function: registerAccount() */
@@ -71,4 +89,4 @@ async function accountLogin(req, res) {
   }
 }
 
-module.exports = { buildLogin, buildRegister, accountLogin };
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin };

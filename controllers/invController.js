@@ -159,8 +159,6 @@ invCont.addNewVehicleController = async (req, res, next) => {
   try {
   let nav = await utilities.getNav();
 
-  await console.log('addNewVehicleController req.body');
-  await console.log(req.body);
   const {
     inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id
   } = await req.body;

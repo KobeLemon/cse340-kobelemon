@@ -34,8 +34,6 @@ Util.getNav = async (req, res, next) => {
 Util.newVehicleClassOptions = async (req, res, next) => {
   let data = await invModel.getClassifications();
   let list = ''; // <option label="Select a Classification" disabled>
-  console.log('newVehicleClassOptions data.rows');
-  console.log(data.rows);
   data.rows.forEach((row) => {
     list += `<option value="${row.classification_id}">${row.classification_name}</option>`;
   });

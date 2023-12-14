@@ -26,8 +26,6 @@ async function checkExistingEmail(account_email) {
   try {
     const sql = "SELECT * FROM account where account_email = $1";
     const email = await pool.query(sql, [account_email]);
-    console.log("checkExistingEmail email");
-    console.log(email);
     return email.rowCount;
   } catch (error) {
     return error.message;

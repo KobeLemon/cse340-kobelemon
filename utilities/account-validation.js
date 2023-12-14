@@ -112,7 +112,7 @@ validate.checkLoginData = async (req, res, next) => {
   if (errorsArray.length > 0) {
     let nav = await utilities.getNav();
     res.render('account/login', {
-      errors: errorsArray[0].msg,
+      errors: errorsArray,
       title: 'Login to your account!',
       nav,
       account_email,

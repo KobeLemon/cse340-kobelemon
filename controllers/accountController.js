@@ -6,9 +6,21 @@
 const utilities = require('../utilities/');
 const accountModel = require('../models/account-model');
 const bcrypt = require('bcryptjs');
-// const jwt = require('jsonwebtoken');
-// require('dotenv').config();
+const jwt = require('jsonwebtoken')
+require('dotenv').config();
 /* End of Require Statements */
+
+/* ****************************************
+*  Deliver account view when logged in
+* *************************************** */
+async function buildAccountHome(req, res, next) {
+    let nav = await utilities.getNav();
+    res.render('account/index', {
+        title: 'Welcome to your account!',
+        nav,
+        errors: null
+    });
+} /* End of Function: buildAccountHome() */
 
 /* ****************************************
 *  Deliver login view
@@ -84,9 +96,23 @@ async function accountLogin(req, res) {
   if (!accountData) {
     req.flash('notice', 'Please check your credentials and try again.');
     res.status(400).render('account/login', {
-
+        title: 'Login to your account!',
+        nav,
+        errors: null,
+        account_email
     })
+    return
+  }
+  try {
+    if (await bcrypt.compare(account_password, accountData.account_password)) {
+        delete accountData.account_password;
+        const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 });
+        res.cookie('jwt', accessToken, { httpOnly: true, maxAge: 3600 * 1000 });
+        return res.redirect('/account/');
+    }
+  } catch (error) {
+    return new Error('Access Forbidden');
   }
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin };
+module.exports = { buildAccountHome, buildLogin, buildRegister, registerAccount, accountLogin };

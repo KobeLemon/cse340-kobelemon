@@ -10,15 +10,18 @@ const accountController = require('../controllers/accountController');
 const regValidate = require('../utilities/account-validation');
 /* End of Require Statements */
 
+// Route to build the account management page
+router.get('/', utilities.handleErrors(accountController.buildAccountHome));
+
 // Route to build the account login page
 router.get('/login', utilities.handleErrors(accountController.buildLogin));
 
 // Route to process the login request
 router.post('/login',
-  (req, res) => { res.status(200).send('login process')}
-//   regValidate.loginRules(),
-//   regValidate.checkLoginData,
-//   utilities.handleErrors(accountController.accountLogin)
+//   (req, res) => { res.status(200).send('login process')}
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
+  utilities.handleErrors(accountController.accountLogin)
 );
 
 // Route to build the account register page

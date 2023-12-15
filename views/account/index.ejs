@@ -1,0 +1,15 @@
+<div class="accountHomeBox">
+    <h2 class="accountTitle"><%- title %></h2>
+
+    <%- messages() %>
+
+    <% if (errors) { %>
+        <ul class="error">
+        <% errors.forEach(error => { %>
+          <li><%= error.msg %></li>
+        <% }); %>
+        </ul>
+      <% } %>
+
+      <p>You're logged in!</p>
+</div>

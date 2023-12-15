@@ -82,13 +82,13 @@ validate.checkRegData = async (req, res, next) => {
 validate.loginRules = () => {
   return [
     // email is required
-    check('account_email', 'Email or password may be incorrect. <br><br>Please check your credentials and retry.')
+    check('account_email', 'Email or password may be incorrect. Please check your credentials and retry.')
       .trim()
       .isEmail()
       .normalizeEmail(),
 
     // password is required and must have 12 characters total, at least 1 capital letter, at least 1 number, & at least 1 special character
-    check('account_password', 'Email or password may be incorrect. <br><br>Please check your credentials and retry.')
+    check('account_password', 'Email or password may be incorrect. Please check your credentials and retry.')
       .trim()
       .isStrongPassword({
         minLength: 12,
@@ -109,6 +109,15 @@ validate.checkLoginData = async (req, res, next) => {
   let errorsObj = [];
   errorsObj = validationResult(req);
   let errorsArray = errorsObj.errors;
+//   console.log('errorsArray[1]');
+//   console.log(errorsArray[1]);
+  if (errorsArray.length == 2) {
+    delete errorsArray[1];
+    console.log('errorsArray[1] deleted');
+    console.log('new errorsArray');
+    console.log(errorsArray);
+  }
+
   if (errorsArray.length > 0) {
     let nav = await utilities.getNav();
     res.render('account/login', {

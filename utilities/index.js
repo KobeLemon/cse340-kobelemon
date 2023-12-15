@@ -142,6 +142,35 @@ Util.checkJWTToken = (req, res, next) => {
   } else {
     next();
   }
-}; /* End of Function: checkJWTToken() */
+};
+/* End of Function: checkJWTToken() */
+
+//* The following two funcs are used for ultimately the same purpose: checking if a user is logged in & sending the account if yes & the login page if no, but the nature of the different endpoints for the account router & login router, two different funcs are needed. Both funcs are explained below:
+
+/* ****************************************
+ *  Check if a user is still logged in & if yes, then call the "next()" which renders the account.
+ *  If not logged in, then redirect to login page
+ *  This function is used on the "router.get('/)" route.
+ * ************************************ */
+Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next();
+  } else {
+    req.flash('notice', 'Please log into your account, or create a new account.');
+    return res.redirect('/account/login');
+  }
+}
+
+/* ****************************************
+ *  Check if a user is still logged in & if yes, then auto-redirect to account which will run the "router.get('/)" route.
+ *  If not logged in, then call "next()" to continue to building the login page.
+ * ************************************ */
+Util.redirectToAccountIfLoggedIn = (req, res, next) => {
+  if (res.locals.loggedin) {
+    res.redirect('/account')
+  } else {
+    next();
+  }
+}
 
 module.exports = Util;

@@ -39,4 +39,7 @@ router.post('/add-inventory',
   utilities.handleErrors(invController.addNewVehicleController)
 );
 
+// Route to get inventory by classification_id for admin vehicle modification
+router.get('/getInventory/:classification_id', utilities.handleErrors(invController.getInventoryJSON));
+
 module.exports = router;

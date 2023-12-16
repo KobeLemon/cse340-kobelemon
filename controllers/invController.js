@@ -65,9 +65,13 @@ invCont.printSingleVehicle = async (req, res, next) => {
 invCont.buildInventoryManagement = async (req, res, next) => {
   try {
     let nav = await utilities.getNav();
+    const classificationSelect = await utilities.buildClassificationList();
+    console.log('classificationSelect');
+    console.log(classificationSelect);
     res.render('inventory/management', {
       title: 'Vehicle Management',
-      nav
+      nav,
+      classificationSelect
     })
   } catch (Error) {
     res.render('errors/error', {
@@ -134,7 +138,7 @@ invCont.addNewClassificationController = async (req, res, next) => {
 invCont.buildAddNewVehicleView = async (req, res, next) => {
   try {
     let nav = await utilities.getNav();
-    let options = await utilities.newVehicleClassOptions();
+    let options = await utilities.buildClassificationList();
     res.render('inventory/add-inventory', {
       title: 'Add New Vehicle',
       nav,
@@ -182,5 +186,22 @@ invCont.addNewVehicleController = async (req, res, next) => {
     })
   }
 } /* End of Function: addNewVehicleController() */
+
+/* ***************************
+ *  Return Inventory by Classification As JSON
+ * ************************** */
+invCont.getInventoryJSON = async (req, res, next) => {
+  const classification_id = parseInt(req.params.classification_id);
+  let invData = await invModel.getInventoryByClassificationId(classification_id);
+  if (invData.length == 0) {
+    // invData = 'No matching vehicles found'
+    // return invData;
+    return res.json('No matching vehicles found')
+  } else  if (invData[0].inv_id) {
+    return res.json(invData);
+  } else {
+    next(new Error('No data returned'));
+  }
+} /* End of Function: getInventoryJSON() */
 
 module.exports = invCont;

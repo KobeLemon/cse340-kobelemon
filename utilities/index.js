@@ -33,14 +33,18 @@ Util.getNav = async (req, res, next) => {
  * Constructs the admin "Add New Vehicle"
  * classifications options list
  ************************** */
-Util.newVehicleClassOptions = async (req, res, next) => {
+Util.buildClassificationList = async (req, res, next) => {
   let data = await invModel.getClassifications();
-  let list = ''; // <option label="Select a Classification" disabled>
-  data.rows.forEach((row) => {
-    list += `<option value="${row.classification_id}">${row.classification_name}</option>`;
+  console.log('buildClassificationList data.rows');
+  console.log(data.rows);
+  let selectBox = '';
+  data.rows.forEach(row => {
+    selectBox += `<option value="${row.classification_id}">${row.classification_name}</option>`;
+    console.log('Select tag:');
+    console.log(selectBox);
   });
-  return list;
-}; /* End of Function: newVehicleClassOptions() */
+  return selectBox;
+}; /* End of Function: buildClassificationList() */
 
 /* **************************************
  * Build the classification view HTML
@@ -148,9 +152,9 @@ Util.checkJWTToken = (req, res, next) => {
 //* The following two funcs are used for ultimately the same purpose: checking if a user is logged in & sending the account if yes & the login page if no, but the nature of the different endpoints for the account router & login router, two different funcs are needed. Both funcs are explained below:
 
 /* ****************************************
- *  Check if a user is still logged in & if yes, then call the "next()" which renders the account.
+ *  Check if a user is still logged in & if yes, then call the "next()" which renders the account page.
  *  If not logged in, then redirect to login page
- *  This function is used on the "router.get('/)" route.
+ *  This function is used on the "router.get('/')" route.
  * ************************************ */
 Util.checkLogin = (req, res, next) => {
   if (res.locals.loggedin) {
@@ -162,8 +166,9 @@ Util.checkLogin = (req, res, next) => {
 }
 
 /* ****************************************
- *  Check if a user is still logged in & if yes, then auto-redirect to account which will run the "router.get('/)" route.
+ *  Check if a user is still logged in & if yes, then auto-redirect to account which will run the "router.get('/)" route which renders the account page.
  *  If not logged in, then call "next()" to continue to building the login page.
+ * This function is used on the "router.get('/login')" route.
  * ************************************ */
 Util.redirectToAccountIfLoggedIn = (req, res, next) => {
   if (res.locals.loggedin) {

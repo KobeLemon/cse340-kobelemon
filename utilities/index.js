@@ -3,6 +3,8 @@
 /* ***********************
  * Require Statements
  *************************/
+const express = require('express');
+const app = express();
 const invModel = require('../models/inventory-model');
 const pool = require('../database/');
 const jwt = require('jsonwebtoken');

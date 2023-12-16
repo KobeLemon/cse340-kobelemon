@@ -2,6 +2,8 @@
 /* ***********************
  * Require Statements
  *************************/
+const express = require('express');
+const app = express();
 const pool = require('../database/');
 /* End of Require Statements */
 

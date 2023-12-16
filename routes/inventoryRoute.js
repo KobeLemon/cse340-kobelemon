@@ -4,6 +4,7 @@
  * Require Statements
  *************************/
 const express = require('express');
+const app = express();
 const router = new express.Router();
 const invController = require('../controllers/invController');
 const utilities = require('../utilities/');

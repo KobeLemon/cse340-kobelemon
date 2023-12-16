@@ -3,6 +3,8 @@
 /* ***********************
  * Require Statements
  *************************/
+const express = require('express');
+const app = express();
 const { Pool } = require('pg');
 require('dotenv').config();
 /* End of Require Statements */

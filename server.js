@@ -9,8 +9,8 @@
  * Require Statements
  *************************/
 const express = require('express');
-const expressLayouts = require('express-ejs-layouts');
 const app = express();
+const expressLayouts = require('express-ejs-layouts');
 const static = require('./routes/static');
 const baseController = require('./controllers/baseController');
 const inventoryRoute = require('./routes/inventoryRoute');

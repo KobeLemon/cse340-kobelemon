@@ -3,6 +3,8 @@
 /* ***********************
  * Require Statements
  *************************/
+const express = require('express');
+const app = express();
 const utilities = require('../utilities/');
 const baseController = {};
 /* End of Require Statements */

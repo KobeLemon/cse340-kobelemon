@@ -3,6 +3,8 @@
 /* ***********************
  * Require Statements
  *************************/
+const express = require('express');
+const app = express();
 const utilities = require('../utilities/');
 const accountModel = require('../models/account-model');
 const bcrypt = require('bcryptjs');
@@ -111,8 +113,9 @@ async function accountLogin(req, res) {
         delete accountData.account_password;
         const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 });
         res.cookie('jwt', accessToken, { httpOnly: true, maxAge: 3600 * 1000 });
+        // res.cookie()
         // app.locals.user = accountData.account_firstname;
-        // console.log('locals.user');
+        // console.log('app.locals.user');
         // console.log(app.locals.user);
         return res.redirect('/account/');
     }

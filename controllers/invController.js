@@ -2,6 +2,8 @@
 /* ***********************
  * Require Statements
  *************************/
+const express = require('express');
+const app = express();
 const invModel = require('../models/inventory-model');
 const utilities = require('../utilities/');
 const invManagement = require('../utilities/inventory-management');

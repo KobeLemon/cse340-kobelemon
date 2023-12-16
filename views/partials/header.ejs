@@ -3,6 +3,12 @@
 <header id="topHeader">
 	<h1><a href="/">CSE Motors</a></h1>
 	<div id="tools">
-    <a href="/account/login" title="Click to access your account" class="homeAccountLink">My Account</a>
+    <%# let username = locals.user %>
+    <%# if (username) { %>
+      <!-- <a href="/account" title="Click here to access your account" class="homeAccountLink">Welcome <%#= username %>!</a> -->
+      <!-- <a href="/account/logout" title="Click here to log out of  your account" class="homeAccountLink">Logout</a> -->
+    <%# } else { %>
+      <a href="/account/login" title="Click here to login" class="homeAccountLink">My Account</a>
+    <%# } %>
   </div>
 </header>

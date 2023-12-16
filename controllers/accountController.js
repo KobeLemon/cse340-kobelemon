@@ -18,7 +18,8 @@ async function buildAccountHome(req, res, next) {
     res.render('account/index', {
         title: 'Welcome to your account!',
         nav,
-        errors: null
+        errors: null,
+        // username: locals.user
     });
 } /* End of Function: buildAccountHome() */
 
@@ -30,7 +31,8 @@ async function buildLogin(req, res, next) {
   res.render('account/login', {
     title: 'Login to your account!',
     nav,
-    errors: null
+    errors: null,
+    // username: locals.user
   });
 } /* End of Function: buildLogin() */
 
@@ -43,7 +45,8 @@ async function buildRegister(req, res, next) {
   res.render('account/register', {
     title: 'Register your new account!',
     nav,
-    errors: null
+    errors: null,
+    // username: locals.user
   });
 } /* End of Function: buildRegister() */
 
@@ -108,6 +111,9 @@ async function accountLogin(req, res) {
         delete accountData.account_password;
         const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 });
         res.cookie('jwt', accessToken, { httpOnly: true, maxAge: 3600 * 1000 });
+        // app.locals.user = accountData.account_firstname;
+        // console.log('locals.user');
+        // console.log(app.locals.user);
         return res.redirect('/account/');
     }
   } catch (error) {
@@ -115,4 +121,13 @@ async function accountLogin(req, res) {
   }
 }
 
-module.exports = { buildAccountHome, buildLogin, buildRegister, registerAccount, accountLogin };
+// Log out of the account
+function logout(req, res, next) {
+  res.clearCookie('jwt');
+  res.locals.accountData = null;
+  res.locals.loggedin = 0;
+  res.status(200).redirect('/');
+  return req.flash('success', 'You have logged out of your account. Come back soon!')
+}
+
+module.exports = { buildAccountHome, buildLogin, buildRegister, registerAccount, accountLogin, logout};

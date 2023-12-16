@@ -38,7 +38,8 @@ invValidate.checkNewClassificationData = async (req, res, next) => {
       errors,
       title: "Add New Classification",
       nav,
-      classification_name
+      classification_name,
+      // username: locals.user
     })
     return
   }
@@ -125,6 +126,7 @@ invValidate.checkNewVehicleData = async (req, res, next) => {
       errors,
       title: "Add New Vehicle",
       nav,
+      // username: locals.user,
       inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id
     })
     return

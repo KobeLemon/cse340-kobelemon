@@ -40,4 +40,7 @@ router.post('/register',
   utilities.handleErrors(accountController.registerAccount)
 );
 
+// Route to log out of the account
+router.get('/logout', utilities.handleErrors(accountController.logout))
+
 module.exports = router;

@@ -69,7 +69,8 @@ validate.checkRegData = async (req, res, next) => {
       nav,
       account_firstname,
       account_lastname,
-      account_email
+      account_email,
+      // username: locals.user
     })
     return
   }
@@ -113,8 +114,8 @@ validate.checkLoginData = async (req, res, next) => {
 //   console.log(errorsArray[1]);
   if (errorsArray.length == 2) {
     delete errorsArray[1];
-    console.log('errorsArray[1] deleted');
-    console.log('new errorsArray');
+    // console.log('errorsArray[1] deleted');
+    // console.log('new errorsArray');
     console.log(errorsArray);
   }
 
@@ -125,7 +126,8 @@ validate.checkLoginData = async (req, res, next) => {
       title: 'Login to your account!',
       nav,
       account_email,
-      account_password
+      account_password,
+      // username: locals.user
     })
     return
   }

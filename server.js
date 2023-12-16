@@ -90,7 +90,8 @@ app.use(async (err, req, res, next) => {
   res.render("errors/error", {
     title: err.status || '500 Server Error',
     message: err.pageNotFoundMessage || "Sorry the site appears to be having issues. Please try again later.",
-    nav
+    nav,
+    // username: locals.user
   })
 })
 /* End of Express Error Handler */

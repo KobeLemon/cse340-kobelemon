@@ -22,14 +22,16 @@ invCont.buildByClassificationId = async (req, res, next) => {
     res.render('./inventory/classification', {
       title: `${className} Vehicles`,
       nav,
-      grid
+      grid,
+      // username: locals.user
     });
   } catch (Error) {
     let nav = await utilities.getNav();
     res.render("errors/error", {
       title: '500 Server Error',
       message: "Sorry, it appears the site is experiencing issues. Please try again later.",
-      nav
+      nav,
+      // username: locals.user
     })
   }
 }; /* End of Function: buildByClassificationId() */
@@ -47,14 +49,16 @@ invCont.printSingleVehicle = async (req, res, next) => {
     res.render('./inventory/vehicle', {
       title: vehicleName,
       nav,
-      vehicleInfo
+      vehicleInfo,
+      // username: locals.user
     })
   } catch (Error) {
     let nav = await utilities.getNav();
     res.render('errors/error', {
       title: '500 Server Error',
       message: 'Sorry, it appears the site is experiencing issues. Please try again later.',
-      nav
+      nav,
+      // username: locals.user
     })
   }
 } /* End of Function: printSingleVehicle() */
@@ -71,13 +75,15 @@ invCont.buildInventoryManagement = async (req, res, next) => {
     res.render('inventory/management', {
       title: 'Vehicle Management',
       nav,
-      classificationSelect
+      classificationSelect,
+      // username: locals.user
     })
   } catch (Error) {
     res.render('errors/error', {
       title: '500 Server Error',
       message: 'Sorry, it appears the site is experiencing issues. Please try again later.',
-      nav
+      nav,
+      // username: locals.user
     })
   }
 } /* End of Function: buildInventoryManagement() */
@@ -92,13 +98,15 @@ invCont.buildAddNewClassView = async (req, res, next) => {
     res.render('inventory/add-classification', {
       title: 'Add New Classification',
       nav,
-      errors: null
+      errors: null,
+      // username: locals.user
     });
   } catch (error) {
     res.render('errors/error', {
       title: '500 Server Error',
       message: 'Sorry, it appears the site is experiencing issues. Please try again later.',
-      nav
+      nav,
+      // username: locals.user
     });
   };
 } /* End of Function: buildAddNewClassView() */
@@ -149,7 +157,8 @@ invCont.buildAddNewVehicleView = async (req, res, next) => {
     res.render('errors/error', {
       title: '500 Server Error',
       message: 'Sorry, it appears the site is experiencing issues. Please try again later.',
-      nav
+      nav,
+      // username: locals.user
     });
   };
 } /* End of Function: buildAddNewVehicleView() */
